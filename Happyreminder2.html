@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Panda Reminder</title>
+    <style>
+        body {
+            background-color: #fdf6e3;
+            color: #333;
+            font-family: "Courier New", monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .line {
+            white-space: pre;
+            font-size: 1.2rem;
+            color: #4CAF50;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        .highlight {
+            color: #BA68C8;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        .sparkle {
+            font-size: 2rem;
+            animation: sparkle 1s infinite;
+        }
+        @keyframes sparkle {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="highlight">You are amazing!!</div>
+    <div id="panda"></div>
+    <div id="sparkle"></div>
+
+    <script>
+        const pandaLines = [
+            "   ('-')",
+            "  (='.'=)",
+            "  (\")_(\")",
+            "  Little puppy said: wish you happy everyday!! 🐶"
+        ];
+
+        const pandaContainer = document.getElementById('panda');
+        pandaLines.forEach((line, index) => {
+            const div = document.createElement('div');
+            div.className = 'line';
+            div.textContent = line;
+            pandaContainer.appendChild(div);
+            setTimeout(() => {
+                div.style.opacity = 1;
+            }, index * 600);
+        });
+
+        const sparkleContainer = document.getElementById('sparkle');
+        let sparkleCount = 0;
+        const sparkleInterval = setInterval(() => {
+            sparkleContainer.textContent += "✨ ";
+            sparkleCount++;
+            if (sparkleCount >= 10) {
+                clearInterval(sparkleInterval);
+                const finalMessage = document.createElement('div');
+                finalMessage.className = 'highlight';
+                finalMessage.textContent = "Happy Happy Happy!!";
+                document.body.appendChild(finalMessage);
+            }
+        }, 200);
+    </script>
+</body>
+</html>
